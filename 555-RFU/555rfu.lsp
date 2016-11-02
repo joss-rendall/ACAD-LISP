@@ -12,16 +12,17 @@
 	(princ)
 )
 ;;; chargement boite de dialogue
-(defun pl_dlg( / li_pl)
+(defun pl_dlg()
 	(setq boite_dial (load_dialog "555rfu.dcl"))
+	(recup_plan)
 	(setq boucle 2)
 	(while (>= boucle 2)
 	(if (null (new_dialog "blocrfu" boite_dial))
 		(progn
 		(alert "Chargement boite de dialogue impossible")
 		(exit)))
-	(recup_plan)
- 	(start_list "listepla")
+	
+	(start_list "listepla")
  	(mapcar 'add_list li_pl)
  	(end_list)
 	(action_tile "objt" "(done_dialog 3)"); bouton selection bloc pour modif
@@ -52,7 +53,7 @@
 ;	(done_dialog)
 )
 ;;; creation de la liste des plans existants
-(defun recup_plan(/ nom pl1)
+(defun recup_plan(/ nom)
 	(setq lay nil)
 		(while (setq lay (tblnext "layer" (not lay )))
 		(setq nom (cdr(assoc 2 lay))
