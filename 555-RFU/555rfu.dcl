@@ -3,11 +3,17 @@ blocrfu : dialog
 	label="Nature du bloc 555 pour le RFU";
 	spacer;
 	
-	:boxed_radio_column {label = "Choix de la fonction";key="choixfonction1";
-			:radio_button {label="MODIFICATION d'un bloc existant";key="modif555";}
-			:radio_button {label="INSERTION d'un nouveau bloc";key="insert555";value="1";}
-			:popup_list {label="Calque d'insertion : ";key="listepla";width="40";}
-			
+	:boxed_column {label = "Choix de la fonction";key="choixfonction1";
+		:row{
+			:column{
+			:radio_button {label="MODIFICATION d'un bloc existant";key="modif555";value="1";}
+			:radio_button {label="INSERTION d'un nouveau bloc  -  Claque d'insertion : ";key="insert555";}
+			}
+			:column{alignment=centered;
+			:button {label="Choix des objets <";key="objt";fixed_width=true;alignment=right;}
+			:popup_list {key="listepla";width=40;alignment=right;}
+			}
+		}
 	}
 	
 	spacer;	
@@ -17,10 +23,10 @@ blocrfu : dialog
 	spacer;	
 	
 		:row {
-			:column {
-				:toggle {key="rfuok";label="Nature pour RFU";}
+			:row {
+				:toggle {key="rfuok";label="Nature pour RFU";value="1";}
 				:popup_list {
-				key="naturerfu";width=60;value="0";
+				key="naturerfu";width=40;value="0";
 				list="Type1\nType2\nType3\nType4";
 				}
 			}
@@ -36,7 +42,7 @@ blocrfu : dialog
 				:radio_button {label="Vide";key="planvide";}
 				}		
 				:edit_box {
-				key="natureplan";width=60;
+				key="natureplan";width=40;
 				}
 			}
 		}
